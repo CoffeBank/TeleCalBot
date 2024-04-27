@@ -1,23 +1,20 @@
 from typing import Optional
 
+from domain.impl.CalendarDataBase import CalendarDataBase
+
 
 # noinspection PyBroadException
 class Repository:
     database = 0
-    cursor = 0
 
     def __init__(self, database):
         self.database = database
         self.database.init()
-        self.cursor = database.cursor
 
     def add_to_list(self, chat_id, username, strings) -> bool:
         try:
             for s in strings:
-                (self.cursor.execute(
-                    "INSERT INTO REMINDERS VALUES("
-                    "'" + chat_id + "','" + s + "','" + username +
-                    "')"))
+                self.database.put(chat_id, s, username)
             return True
         except Exception:
             return False
@@ -27,20 +24,17 @@ class Repository:
             err = ""
             result = ""
             for s in strings:
-                rc = self.cursor.execute(
-                    "DELETE FROM REMINDERS WHERE CHATID='" + chat_id + "' AND ITEM='" + s + "'").rowcount
-                if rc <= 0:
-                    err += s + "\n"
-                else:
+                if self.database.delete(chat_id, s):
                     result += s + "\n"
+                else:
+                    err += s + "\n"
             return result, err
         except Exception:
             return None
 
     def show_list(self, chat_id) -> Optional[str]:
         try:
-            self.cursor.execute("SELECT ITEM FROM REMINDERS WHERE CHATID='" + chat_id + "'")
-            rows = self.cursor.fetchall()
+            rows = self.database.select(chat_id)
             if len(rows) > 0:
                 items = ""
                 for row in rows:
@@ -53,10 +47,12 @@ class Repository:
 
     def clear_list(self, chat_id) -> Optional[bool]:
         try:
-            if self.cursor.execute("DELETE FROM REMINDERS WHERE CHATID='" + chat_id + "'").rowcount > 0:
-                self.cursor.commit()
-                return True
-            else:
-                return False
+            return self.database.delete_all(chat_id)
         except Exception:
             return None
+
+
+x = Repository(CalendarDataBase())
+
+x.add_to_list("1", "q", "w")
+print(x.show_list("1"))
