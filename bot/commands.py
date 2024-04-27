@@ -1,9 +1,8 @@
 # Обработчики запросов в БД для бота
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
-
-from domain.impl.Repository import repository
-from text import HELLO_TEXT, ITEMS_ADD, ITEMS_ERROR, REPORT, ERR, ERR_SOLO, LIST_DEL, LIST_ERR
+from bot.main_com import repository
+from bot.text import HELLO_TEXT, ITEMS_ADD, ITEMS_ERROR, REPORT, ERR, ERR_SOLO, LIST_DEL, LIST_ERR
 
 async def add_to_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -29,7 +28,7 @@ async def add_to_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def remove_from_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
     strings = update.message.text.lower().split()
 
-    if len(strings) >= 3:
+    if len(strings) >= 2:
         strings.remove('/rmfromlist')
 
         chat_id = update.message.chat_id

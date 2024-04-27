@@ -4,11 +4,10 @@ import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
-from config import TOKEN
-from domain.impl.CalendarDataBase import CalendarDataBase
-from domain.impl.Repository import Repository
-from main_com import start, help_command
-from commands import add_to_list, remove_from_list, show_list, clear_list
+from bot.config import TOKEN
+
+from bot.main_com import start, help_command
+from bot.commands import add_to_list, remove_from_list, show_list, clear_list
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -16,7 +15,6 @@ logging.basicConfig(
 )
 
 if __name__ == '__main__':
-    repository = Repository(CalendarDataBase())
 
     application = ApplicationBuilder().token(TOKEN).build()
     

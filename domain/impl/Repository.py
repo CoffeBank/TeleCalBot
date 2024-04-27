@@ -60,6 +60,3 @@ class Repository:
                 return False
         except Exception:
             return None
-
-
-repository = None
