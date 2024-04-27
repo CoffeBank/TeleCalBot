@@ -1,10 +1,12 @@
-#https://docs.python-telegram-bot.org/en/stable/index.html
+# https://docs.python-telegram-bot.org/en/stable/index.html
 
 import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
 from config import TOKEN
+from domain.impl.CalendarDataBase import CalendarDataBase
+from domain.impl.Repository import Repository
 from main_com import start, help_command
 from commands import add_to_list, remove_from_list, show_list, clear_list
 
@@ -14,6 +16,8 @@ logging.basicConfig(
 )
 
 if __name__ == '__main__':
+    repository = Repository(CalendarDataBase())
+
     application = ApplicationBuilder().token(TOKEN).build()
     
     application.add_handler(CommandHandler('start', start))
