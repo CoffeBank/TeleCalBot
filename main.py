@@ -1,6 +1,5 @@
 # https://docs.python-telegram-bot.org/en/stable/index.html
 
-import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
@@ -8,11 +7,8 @@ from bot.config import TOKEN
 
 from bot.main_com import start, help_command
 from bot.commands import add_to_list, remove_from_list, show_list, clear_list
+import bot.loger
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
 
 if __name__ == '__main__':
 
