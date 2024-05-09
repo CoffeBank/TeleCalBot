@@ -36,10 +36,7 @@ class Repository:
         try:
             rows = self.database.select(chat_id)
             if len(rows) > 0:
-                items = ""
-                for row in rows:
-                    items += row[0] + "\n"
-                return items
+                return rows
             else:
                 return ""
         except Exception:
