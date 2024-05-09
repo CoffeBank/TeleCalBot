@@ -14,7 +14,7 @@ class Repository:
     def add_to_list(self, chat_id, username, strings) -> bool:
         try:
             for s in strings:
-                self.database.put(chat_id, s, username)
+                self.database.put(chat_id, username, s)
             return True
         except Exception:
             return False
@@ -51,8 +51,8 @@ class Repository:
         except Exception:
             return None
 
-
+"""
 x = Repository(CalendarDataBase())
-
 x.add_to_list("1", "q", "w")
 print(x.show_list("1"))
+"""
