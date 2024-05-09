@@ -12,9 +12,18 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
-        "Используй /start для запуска :) \n"
-        "addtolist \n"
-        "rmfromlist \n"
-        "show_list \n"
-        "clear_list \n"
+        "Привет! Вот список команд, которые ты можешь использовать:\n\n"
+    
+        "**Основные команды**\n"
+        "/start - запуск бота\n"
+    
+        "**Работа с календарем**\n"
+        "/addtolist [цель] [время] - добавить событие в список\n"
+        "/rmfromlist [цель] - удалить событие из списка\n"
+        "/show_list - показать все события в списке\n"
+        "/clear_list - очистить весь список\n"
+    
+        "**Прочие команды**\n"
+        "/help - показать это сообщение\n"
+        "/about - информация о боте\n"
     )
