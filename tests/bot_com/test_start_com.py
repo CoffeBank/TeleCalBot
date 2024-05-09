@@ -31,29 +31,3 @@ async def test_start_function():
     context_mock.bot.send_message.assert_called_once_with(
         chat_id=123,
         text=HELLO_TEXT)
-
-
-"""
-async def test_name_function():
-    update_mock = AsyncMock()
-    context_mock = AsyncMock()
-    context_mock.bot = AsyncMock()
-    update_mock.effective_user = MockUser(932872542)
-    update_mock.effective_chat = MockChat(123)
-
-    update_mock.message.text = "/name New List"
-    context_mock.args = ["New", "List"]
-
-    await name(update_mock, context_mock)
-
-    context_mock.bot.send_message.assert_called_once_with(
-        chat_id=123,
-        text="Your list will be named <b>New List</b>. You're set!",
-        parse_mode="HTML",
-    )
-"""
-
-"""
-if __name__ == "__main__":
-    pytest.main()
-"""
