@@ -7,7 +7,7 @@ from bot.config import TOKEN
 
 from bot.main_com import start, help_command
 from bot.commands import add_to_list, remove_from_list, show_list, clear_list
-import bot.loger
+from bot.loger import logger, error_handler
 
 
 if __name__ == '__main__':
@@ -23,5 +23,7 @@ if __name__ == '__main__':
     application.add_handler(CommandHandler('clear_list', clear_list))
 
     #application.add_handler(CommandHandler('about', about))
+
+    application.add_error_handler(error_handler)
     
     application.run_polling()
