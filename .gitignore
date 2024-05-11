@@ -7,3 +7,8 @@ domain/impl/__pycache__/Repository.cpython-311.pyc
 domain/impl/__pycache__/CalendarDataBase.cpython-311.pyc
 database/REMINDERS.db
 database/REMINDERS.db-journal
+tests/repository/__pycache__/test_repository.cpython-311-pytest-8.1.2.pyc
+tests/repository/__pycache__/test_data_repository.cpython-311-pytest-8.1.2.pyc
+tests/repository/__pycache__/test_bot.cpython-311-pytest-8.1.2.pyc
+tests/bot_com/__pycache__/test_start_com.cpython-311-pytest-8.1.2.pyc
+__pycache__/test_start.cpython-311-pytest-8.1.2.pyc
