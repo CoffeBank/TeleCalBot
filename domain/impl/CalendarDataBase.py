@@ -48,7 +48,7 @@ class CalendarDataBase:
 
     def delete_all(self, chat_id) -> Optional[bool]:
         if self.cursor.execute("DELETE FROM REMINDERS WHERE CHATID='" + chat_id + "'").rowcount > 0:
-            self.cursor.commit()
+            #self.cursor.commit()
             return True
         else:
             return False
