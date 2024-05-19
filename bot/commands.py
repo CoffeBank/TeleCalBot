@@ -15,7 +15,7 @@ async def add_to_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     strings = update.message.text.lower().split()
 
-    if len(strings) >= 3:
+    if len(strings) >= 3 and len(strings) % 2 != 0:
         strings.remove('/addtolist')
 
         chat_id = update.message.chat_id
