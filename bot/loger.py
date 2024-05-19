@@ -6,6 +6,8 @@ logging.basicConfig(
     filename='bot.log'
 )
 
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
 logger = logging.getLogger(__name__)
 
 def error_handler(update, context):
