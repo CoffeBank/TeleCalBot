@@ -18,10 +18,13 @@ class Test_Repository(unittest.TestCase):
 
         repository = Repository(fake_db)
 
-        repository.add_to_list("", "", "")
-        repository.show_list("")
-        repository.remove_from_list("","")
-        repository.clear_list("")
+        username = "username1"
+        chat_id = 1231
+
+        repository.add_to_list(chat_id, username, "hello", "today")
+        repository.show_list(chat_id)
+        repository.remove_from_list(chat_id,"[1,2,3]")
+        repository.clear_list(chat_id)
 
         self.assertTrue(True)
 

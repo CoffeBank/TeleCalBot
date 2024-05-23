@@ -15,14 +15,17 @@ async def add_to_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     strings = update.message.text.lower().split()
 
-    if len(strings) >= 3 and len(strings) % 2 != 0:
+    if len(strings) >= 3:
         strings.remove('/addtolist')
 
         chat_id = update.message.chat_id
         chat_id = str(chat_id)
         username = update.message.from_user.username
 
-        result = repository.add_to_list(chat_id, username, strings)
+        text = " ".join(strings[:-1])
+        date = strings[-1]
+
+        result = repository.add_to_list(chat_id, username, text, date)
 
         if result:
             logger.info(LOG_INFO_USER_ADD_TO_LIST_SUC.format(user.username, strings))
@@ -72,6 +75,7 @@ async def show_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.info(LOG_INFO_USER_SHOW_LIST_SUC_AND_LONG.format(username, len(result)))
         await update.message.reply_text(username + " list:\n" + result)
     else:
+        username = update.message.from_user.username
         logger.info(LOG_INFO_USER_SHOW_LIST_EMPTY.format(username))
         await update.message.reply_text(ERR_SOLO)
 
