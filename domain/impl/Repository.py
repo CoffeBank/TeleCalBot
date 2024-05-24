@@ -1,3 +1,4 @@
+import datetime
 from typing import Optional
 
 from domain.impl.CalendarDataBase import CalendarDataBase
@@ -11,10 +12,11 @@ class Repository:
         self.database = database
         self.database.init()
 
-    def add_to_list(self, chat_id, username, strings) -> bool:
+    def add_to_list(self, chat_id, username, string, time) -> bool:
         try:
-            for s in strings:
-                self.database.put(chat_id, username, s)
+            time_splited = time.split("-")
+            time = datetime.date(int(time_splited[0]), int(time_splited[1]), int(time_splited[2]))
+            self.database.put(chat_id, username, string, time)
             return True
         except Exception:
             return False
